@@ -1,7 +1,7 @@
 {
   "title": "learn anything - mathematics - geometry - euclidean space",
   "tag": "",
-  "id": 946,
+  "id": 949,
   "map": {
     "text": "euclidean space",
     "note": "encompasses the two-dimensional Euclidean plane, the three-dimensional space of Euclidean geometry and certain other spaces  Euclidean spaces also generalise to higher dimensions  from modern viewpoint, there is essentially only one Euclidean space of each dimension  one way to think of the Euclidean plane is a set of points satisfying certain relationships, expressible in terms of distance and angle  for example, there are two fundamental operations (referred to as motions) on the plane  one is translation, which means a shifting of the plane so that every point is shifted in the same direction and by the same distance  the other is rotation about a fixed point in the plane, in which every point in the plane turns about that fixed point through the same angle  one of the basic tenets of Euclidean geometry is that two figures (usually considered as subsets) of the plane should be considered equivalent (congruent) if one can be transformed into the other by some sequence of translations, rotations and reflections",

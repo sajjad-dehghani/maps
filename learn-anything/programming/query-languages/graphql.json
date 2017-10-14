@@ -1,7 +1,7 @@
 {
   "title": "learn anything - programming - query languages - graphql",
   "tag": "graphQL",
-  "id": 1684,
+  "id": 1687,
   "map": {
     "text": "GraphQL",
     "note": "The idea is that GraphQL is independent of the actual underlying storage mechanism. You're still referring to the objects by the object model that is exposed by the REST api (which is effectively an interface that abstracts the underlying storage), this just means instead of saying I want repo/x, getting back all the JSON for the repo, and grabbing the number of stars out of that, you can directly query the object model for \"# of stars for repo X\". It's the backend's job to resolve that still, just like it was for how it filled out the \"repo/x\" response.",

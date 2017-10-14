@@ -1,7 +1,7 @@
 {
   "title": "learn anything - mathematics - logic - combinatory logic",
   "tag": "",
-  "id": 999,
+  "id": 1002,
   "map": {
     "text": "combinatory logic",
     "note": "is a notation to eliminate the need for quantified variables in mathematical logic  It was introduced by Moses Schönfinkel and Haskell Curry and has more recently been used in computer science as a theoretical model of computation and also as a basis for the design of functional programming languages.",
