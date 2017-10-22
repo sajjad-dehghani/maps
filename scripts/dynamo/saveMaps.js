@@ -47,23 +47,19 @@ const getNodesAndResources = (node, mapID, parentID=null) => {
   };
 };
 
-const batchWriteCallback = (docClient, table) => (data) => {
+const batchWriteCallback = async (docClient, table, data) => {
   if (data.UnprocessedItems && data.UnprocessedItems[table] &&
     data.UnprocessedItems[table].length > 0) {
     const params = { RequestItems: data.UnprocessedItems };
 
-    docClient('batchWrite', params)
-      .then(batchWriteCallback(docClient, table))
-      .catch((err) => {
-        console.error(err);
-        process.exit(1);
-      });
+    const newData = await docClient('batchWrite', params);
+    await batchWriteCallback(docClient, table, newData);
   } else {
     console.log('BatchWriteItem processed all items.');
   }
 };
 
-const batchPut = (docClient, items, table) => {
+const batchPut = async (docClient, items, table) => {
   while (items.length > 0) {
     const params = {
       RequestItems: { [table]: [] },
@@ -79,12 +75,12 @@ const batchPut = (docClient, items, table) => {
 
     if (params.RequestItems[table].length > 0) {
       console.log(`Calling batchWrite with ${params.RequestItems[table].length} items`);
-      docClient('batchWrite', params)
-        .then(batchWriteCallback(docClient, 'Nodes'))
-        .catch((err) => {
-          console.error(err);
-          process.exit(1);
-        });
+      const data = await docClient('batchWrite', params);
+      await batchWriteCallback(docClient, 'Nodes', data);
+
+      if (process.env.NODE_ENV === 'production') {
+        await sleep(500);
+      }
     }
   }
 };
@@ -101,16 +97,21 @@ module.exports = async (docClient) => {
     const { nodes, resources } = getNodesAndResources(el.data.map, map.mapID);
 
     // Save stuff on dynamoDB
-    docClient('put', {
+    await docClient('put', {
       TableName: 'Maps',
       Item: map,
       ReturnConsumedCapacity: 'TOTAL',
       ReturnItemCollectionMetrics: 'SIZE',
     });
 
-    batchPut(docClient, nodes, 'Nodes');
-    batchPut(docClient, resources, 'Resources');
+    await batchPut(docClient, nodes, 'Nodes');
+    await batchPut(docClient, resources, 'Resources');
     console.log(map.title, map.mapID);
-    await sleep(200);
+
+    if (process.env.NODE_ENV === 'production') {
+      await sleep(500);
+    } else {
+      await sleep(200);
+    }
   }
 }

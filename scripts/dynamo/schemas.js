@@ -12,8 +12,8 @@ const mapsSchema = {
   }],
 
   ProvisionedThroughput: {
-    ReadCapacityUnits: 1,
-    WriteCapacityUnits: 1,
+    ReadCapacityUnits: 3,
+    WriteCapacityUnits: 3,
   },
 };
 
@@ -36,8 +36,8 @@ const nodesSchema = {
     Projection: { ProjectionType: 'ALL' },
 
     ProvisionedThroughput: {
-      ReadCapacityUnits: 1,
-      WriteCapacityUnits: 1,
+      ReadCapacityUnits: 3,
+      WriteCapacityUnits: 3,
     },
   }],
 
@@ -54,7 +54,7 @@ const nodesSchema = {
 
   ProvisionedThroughput: {
     ReadCapacityUnits: 1,
-    WriteCapacityUnits: 1,
+    WriteCapacityUnits: 3,
   },
 };
 
@@ -77,8 +77,8 @@ const resourcesSchema = {
     Projection: { ProjectionType: 'ALL' },
 
     ProvisionedThroughput: {
-      ReadCapacityUnits: 1,
-      WriteCapacityUnits: 1,
+      ReadCapacityUnits: 3,
+      WriteCapacityUnits: 3,
     },
   }],
 
@@ -94,8 +94,8 @@ const resourcesSchema = {
   ],
 
   ProvisionedThroughput: {
-    ReadCapacityUnits: 1,
-    WriteCapacityUnits: 1,
+    ReadCapacityUnits: 5,
+    WriteCapacityUnits: 5,
   },
 };
 
@@ -125,8 +125,8 @@ const votesSchema = {
   ],
 
   ProvisionedThroughput: {
-    ReadCapacityUnits: 1,
-    WriteCapacityUnits: 1,
+    ReadCapacityUnits: 5,
+    WriteCapacityUnits: 5,
   },
 };
 
