@@ -126,6 +126,10 @@ const votesSchema = {
     {
       AttributeName: "resourceID",
       KeyType: "RANGE"
+    },
+    {
+      AttributeName: "mapID",
+      KeyType: "N"
     }
   ],
 
@@ -141,13 +145,6 @@ const votesSchema = {
     {
       AttributeName: "mapID",
       AttributeType: "N"
-    }
-  ],
-  
-  KeySchema: [
-    {
-      AttributeName: "mapID",
-      KeyType: "N"
     }
   ],
 
