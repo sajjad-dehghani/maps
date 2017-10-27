@@ -1,138 +1,160 @@
 const mapsSchema = {
-  TableName: 'Maps',
+  TableName: "Maps",
 
-  KeySchema: [{
-    AttributeName: 'mapID',
-    KeyType: 'HASH',
-  }],
-
-  AttributeDefinitions: [{
-    AttributeName: 'mapID',
-    AttributeType: 'N',
-  }],
-
-  ProvisionedThroughput: {
-    ReadCapacityUnits: 3,
-    WriteCapacityUnits: 3,
-  },
-};
-
-const nodesSchema = {
-  TableName: 'Nodes',
-
-  KeySchema: [{
-    AttributeName: 'nodeID',
-    KeyType: 'HASH',
-  }],
-
-  GlobalSecondaryIndexes: [{
-    IndexName: 'MapIndex',
-
-    KeySchema: [{
-      AttributeName: 'mapID',
-      KeyType: 'HASH',
-    }],
-
-    Projection: { ProjectionType: 'ALL' },
-
-    ProvisionedThroughput: {
-      ReadCapacityUnits: 3,
-      WriteCapacityUnits: 3,
-    },
-  }],
+  KeySchema: [
+    {
+      AttributeName: "mapID",
+      KeyType: "HASH"
+    }
+  ],
 
   AttributeDefinitions: [
     {
-      AttributeName: 'nodeID',
-      AttributeType: 'N',
+      AttributeName: "mapID",
+      AttributeType: "N"
+    }
+  ],
+
+  ProvisionedThroughput: {
+    ReadCapacityUnits: 3,
+    WriteCapacityUnits: 3
+  }
+};
+
+const nodesSchema = {
+  TableName: "Nodes",
+
+  KeySchema: [
+    {
+      AttributeName: "nodeID",
+      KeyType: "HASH"
+    }
+  ],
+
+  GlobalSecondaryIndexes: [
+    {
+      IndexName: "MapIndex",
+
+      KeySchema: [
+        {
+          AttributeName: "mapID",
+          KeyType: "HASH"
+        }
+      ],
+
+      Projection: { ProjectionType: "ALL" },
+
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 3,
+        WriteCapacityUnits: 3
+      }
+    }
+  ],
+
+  AttributeDefinitions: [
+    {
+      AttributeName: "nodeID",
+      AttributeType: "N"
     },
     {
-      AttributeName: 'mapID',
-      AttributeType: 'N',
-    },
+      AttributeName: "mapID",
+      AttributeType: "N"
+    }
   ],
 
   ProvisionedThroughput: {
     ReadCapacityUnits: 1,
-    WriteCapacityUnits: 3,
-  },
+    WriteCapacityUnits: 3
+  }
 };
 
 const resourcesSchema = {
-  TableName: 'Resources',
-
-  KeySchema: [{
-    AttributeName: 'resourceID',
-    KeyType: 'HASH',
-  }],
-
-  GlobalSecondaryIndexes: [{
-    IndexName: 'MapIndex',
-
-    KeySchema: [{
-      AttributeName: 'mapID',
-      KeyType: 'HASH',
-    }],
-
-    Projection: { ProjectionType: 'ALL' },
-
-    ProvisionedThroughput: {
-      ReadCapacityUnits: 3,
-      WriteCapacityUnits: 3,
-    },
-  }],
-
-  AttributeDefinitions: [
-    {
-      AttributeName: 'resourceID',
-      AttributeType: 'N',
-    },
-    {
-      AttributeName: 'mapID',
-      AttributeType: 'N',
-    },
-  ],
-
-  ProvisionedThroughput: {
-    ReadCapacityUnits: 5,
-    WriteCapacityUnits: 5,
-  },
-};
-
-const votesSchema = {
-  TableName: 'Votes',
+  TableName: "Resources",
 
   KeySchema: [
     {
-      AttributeName: 'userID',
-      KeyType: 'HASH',
-    },
+      AttributeName: "resourceID",
+      KeyType: "HASH"
+    }
+  ],
+
+  GlobalSecondaryIndexes: [
     {
-      AttributeName: 'resourceID',
-      KeyType: 'RANGE',
-    },
+      IndexName: "MapIndex",
+
+      KeySchema: [
+        {
+          AttributeName: "mapID",
+          KeyType: "HASH"
+        }
+      ],
+
+      Projection: { ProjectionType: "ALL" },
+
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 3,
+        WriteCapacityUnits: 3
+      }
+    }
   ],
 
   AttributeDefinitions: [
     {
-      AttributeName: 'userID',
-      AttributeType: 'S',
+      AttributeName: "resourceID",
+      AttributeType: "N"
     },
     {
-      AttributeName: 'resourceID',
-      AttributeType: 'N',
-    },
+      AttributeName: "mapID",
+      AttributeType: "N"
+    }
   ],
 
   ProvisionedThroughput: {
     ReadCapacityUnits: 5,
-    WriteCapacityUnits: 5,
-  },
+    WriteCapacityUnits: 5
+  }
 };
 
-module.exports = [
-  mapsSchema,
-  nodesSchema,
-  resourcesSchema,
-  votesSchema,
-];
+const votesSchema = {
+  TableName: "Votes",
+
+  KeySchema: [
+    {
+      AttributeName: "userID",
+      KeyType: "HASH"
+    },
+    {
+      AttributeName: "resourceID",
+      KeyType: "RANGE"
+    }
+  ],
+
+  AttributeDefinitions: [
+    {
+      AttributeName: "userID",
+      AttributeType: "S"
+    },
+    {
+      AttributeName: "resourceID",
+      AttributeType: "N"
+    },
+    {
+      AttributeName: "mapID",
+      AttributeType: "N"
+    }
+  ],
+  
+  KeySchema: [
+    {
+      AttributeName: "mapID",
+      KeyType: "N"
+    }
+  ],
+
+  ProvisionedThroughput: {
+    ReadCapacityUnits: 5,
+    WriteCapacityUnits: 5
+  }
+};
+
+module.exports = [mapsSchema, nodesSchema, resourcesSchema, votesSchema];
