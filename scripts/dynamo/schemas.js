@@ -133,6 +133,26 @@ const votesSchema = {
     }
   ],
 
+  GlobalSecondaryIndexes: [
+    {
+      IndexName: "MapIndex",
+
+      KeySchema: [
+        {
+          AttributeName: "mapID",
+          KeyType: "HASH"
+        }
+      ],
+
+      Projection: { ProjectionType: "ALL" },
+      
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 2,
+        WriteCapacityUnits: 2
+      }
+    }
+  ],
+
   AttributeDefinitions: [
     {
       AttributeName: "userID",
