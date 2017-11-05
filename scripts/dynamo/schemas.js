@@ -127,10 +127,6 @@ const votesSchema = {
       AttributeName: "resourceID",
       KeyType: "RANGE"
     },
-    {
-      AttributeName: "mapID",
-      KeyType: "N"
-    }
   ],
 
   GlobalSecondaryIndexes: [
@@ -139,13 +135,17 @@ const votesSchema = {
 
       KeySchema: [
         {
-          AttributeName: "mapID",
+          AttributeName: "userID",
           KeyType: "HASH"
-        }
+        },
+        {
+          AttributeName: "mapID",
+          KeyType: "RANGE"
+        },
       ],
 
       Projection: { ProjectionType: "ALL" },
-      
+
       ProvisionedThroughput: {
         ReadCapacityUnits: 2,
         WriteCapacityUnits: 2
