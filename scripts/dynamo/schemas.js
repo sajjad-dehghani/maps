@@ -16,8 +16,8 @@ const mapsSchema = {
   ],
 
   ProvisionedThroughput: {
-    ReadCapacityUnits: 3,
-    WriteCapacityUnits: 3
+    ReadCapacityUnits: 1,
+    WriteCapacityUnits: 1
   }
 };
 
@@ -64,7 +64,7 @@ const nodesSchema = {
 
   ProvisionedThroughput: {
     ReadCapacityUnits: 1,
-    WriteCapacityUnits: 3
+    WriteCapacityUnits: 1
   }
 };
 
@@ -74,8 +74,8 @@ const resourcesSchema = {
   KeySchema: [
     {
       AttributeName: "resourceID",
-      KeyType: "HASH"
-    }
+      KeyType: "HASH",
+    },
   ],
 
   GlobalSecondaryIndexes: [
@@ -101,7 +101,7 @@ const resourcesSchema = {
   AttributeDefinitions: [
     {
       AttributeName: "resourceID",
-      AttributeType: "N"
+      AttributeType: "S",
     },
     {
       AttributeName: "mapID",
@@ -147,8 +147,8 @@ const votesSchema = {
       Projection: { ProjectionType: "ALL" },
 
       ProvisionedThroughput: {
-        ReadCapacityUnits: 2,
-        WriteCapacityUnits: 2
+        ReadCapacityUnits: 3,
+        WriteCapacityUnits: 3
       }
     }
   ],
@@ -160,7 +160,7 @@ const votesSchema = {
     },
     {
       AttributeName: "resourceID",
-      AttributeType: "N"
+      AttributeType: "S"
     },
     {
       AttributeName: "mapID",
